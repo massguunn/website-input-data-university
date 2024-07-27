@@ -1,20 +1,16 @@
 {% include 'header.html' %}
 
-<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Data Mahasiswa</h1>
-                </div><!-- /.col -->
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
     </div>
-    <!-- /.content-header -->
 
-    <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -22,110 +18,46 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Daftar Mahasiswa</h3>
-
-                            <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right"
-                                        placeholder="Search">
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body table-responsive p-0" style="height: 400px;">
-                            <table class="table table-head-fixed table-bordered text-nowrap">
+                        <div class="card-body">
+                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Nama</th>
                                         <th>NIM</th>
+                                        <th>Alamat</th>
+                                        <th>Program Studi</th>
                                         <th>Jenis Kelamin</th>
-                                        <th>Status</th>
-                                        <th>Tanggal Bergabung</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {% for mhs in mahasiswa %}
                                     <tr>
-                                        <td>183</td>
-                                        <td>John Doe</td>
-                                        <td>123456789</td>
-                                        <td>Laki-laki</td>
-                                        <td><span class="tag tag-success">Aktif</span></td>
-                                        <td>2014-07-11</td>
+                                        <td>{{ mhs.id }}</td>
+                                        <td>{{ mhs.name }}</td>
+                                        <td>{{ mhs.nim }}</td>
+                                        <td>{{ mhs.alamat }}</td>
+                                        <td>{{ mhs.prodi }}</td>
+                                        <td>{{ mhs.jk }}</td>
+                                        <td>
+                                            <a href="{{ url_for('edit_mahasiswa', id=mhs.id) }}"
+                                                class="btn btn-success btn-sm">Edit</a>
+                                            <a href="{{ url_for('delete_mahasiswa', id=mhs.id) }}"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Yakin ingin menghapus data ini?');">Hapus</a>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>219</td>
-                                        <td>Alexander Pierce</td>
-                                        <td>987654321</td>
-                                        <td>Laki-laki</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>2014-07-11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>657</td>
-                                        <td>Bob Doe</td>
-                                        <td>456123789</td>
-                                        <td>Laki-laki</td>
-                                        <td><span class="tag tag-success">Aktif</span></td>
-                                        <td>2014-07-11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>175</td>
-                                        <td>Mike Doe</td>
-                                        <td>321654987</td>
-                                        <td>Laki-laki</td>
-                                        <td><span class="tag tag-danger">Tidak Aktif</span></td>
-                                        <td>2014-07-11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>134</td>
-                                        <td>Jim Doe</td>
-                                        <td>159753468</td>
-                                        <td>Laki-laki</td>
-                                        <td><span class="tag tag-success">Aktif</span></td>
-                                        <td>2014-07-11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>494</td>
-                                        <td>Victoria Doe</td>
-                                        <td>789456123</td>
-                                        <td>Perempuan</td>
-                                        <td><span class="tag tag-warning">Pending</span></td>
-                                        <td>2014-07-11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>832</td>
-                                        <td>Michael Doe</td>
-                                        <td>654123987</td>
-                                        <td>Laki-laki</td>
-                                        <td><span class="tag tag-success">Aktif</span></td>
-                                        <td>2014-07-11</td>
-                                    </tr>
-                                    <tr>
-                                        <td>982</td>
-                                        <td>Rocky Doe</td>
-                                        <td>753159468</td>
-                                        <td>Laki-laki</td>
-                                        <td><span class="tag tag-danger">Tidak Aktif</span></td>
-                                        <td>2014-07-11</td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
                 </div>
             </div>
-            <!-- /.row (main row) -->
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
 
 {% include 'footer.html' %}

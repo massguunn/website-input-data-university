@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Tambah Data Dosen</h1>
+                    <h1 class="m-0">Edit Data Dosen</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -27,35 +27,37 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form id="quickForm" method="POST" action="{{ url_for('tambah_dosen') }}">
+                        <form id="quickForm" method="POST" action="{{ url_for('edit_dosen', id=dosen['id']) }}">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="name">Nama Dosen</label>
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Masukkan nama" required>
+                                        placeholder="Masukkan nama" value="{{ dosen['name'] }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="jk">Jenis Kelamin</label>
                                     <select name="jk" class="form-control" id="jk" required>
                                         <option value="">Pilih Jenis Kelamin</option>
-                                        <option value="laki-laki">Laki-laki</option>
-                                        <option value="perempuan">Perempuan</option>
+                                        <option value="laki-laki"
+                                            {% if dosen['jk'] == 'laki-laki' %}selected{% endif %}>Laki-laki</option>
+                                        <option value="perempuan"
+                                            {% if dosen['jk'] == 'perempuan' %}selected{% endif %}>Perempuan</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="jabatan">Jabatan</label>
                                     <input type="text" name="jabatan" class="form-control" id="jabatan"
-                                        placeholder="Masukkan jabatan" required>
+                                        placeholder="Masukkan jabatan" value="{{ dosen['jabatan'] }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="tgl_gabung">Tanggal Bergabung</label>
-                                    <input type="date" name="tgl_gabung" class="form-control" id="tgl_gabung" required>
+                                    <input type="date" name="tgl_gabung" class="form-control" id="tgl_gabung"
+                                        value="{{ dosen['tgl_gabung'] }}" required>
                                 </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-success">Simpan</button>
-                                <a href="{{ url_for('data_dosen') }}" class="btn btn-secondary">Kembali</a>
+                                <button type="submit" class="btn btn-success">Submit</button>
                             </div>
                         </form>
                     </div>
